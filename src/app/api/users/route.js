@@ -1,18 +1,7 @@
-import { getUsers } from "../../../lib/mongo/users";
-
-const handler = async (req, res) => {
-    if (req.method === 'GET') {
-        try {
-            const { users, error} = await getUsers()
-            if (error) throw new Error(error)
-
-            return res.status(200).json({ movies })
-        } catch (error) {
-            return res.status(500).json({ error: error.message })
-        }
-    }
-    res.setHeader('Allow', ['GET'])
-    res.status(405).end(`Method ${req.method} is not allowed`)
-}
-
-export default handler
+export async function GET(request) {
+    const responseBody = { name: 'John Doe' };
+    const responseInit = {
+      headers: { 'content-type': 'application/json' },
+    };
+    return new Response(JSON.stringify(responseBody), responseInit);
+  }
